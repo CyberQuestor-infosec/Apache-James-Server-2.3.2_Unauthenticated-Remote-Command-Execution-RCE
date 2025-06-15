@@ -1,4 +1,4 @@
-# Apache James Server 2.3.2 - Remote Code Execution (Unauthenticated)
+# Apache James Server 2.3.2 – Authenticated Remote Code Execution (Exploit-DB 50347)
 
 > ⚠️ **Disclaimer**  
 This repository is intended **strictly for educational and research purposes only**.  
@@ -10,19 +10,18 @@ The author is **not responsible** for any misuse or damages caused.
 
 ## 🔍 About the Vulnerability
 
-This vulnerability affects **Apache James Server 2.3.2**, an enterprise-grade email and messaging solution written in Java.  
-The issue allows **unauthenticated Remote Code Execution (RCE)** via exposed service ports.
+This vulnerability affects **Apache James Server 2.3.2** and allows an **authenticated attacker** to achieve **Remote Code Execution (RCE)** through a combination of exposed services:
 
-The attacker exploits two services in sequence:
-1. **Remote Administration Tool (default port: 4555)** – to create a new user  
-2. **SMTP Service (default port: 25)** – to send a malicious email payload  
-The payload is executed **once the victim logs into the system** (e.g., via SSH).
+- **Remote Admin Interface** on port `4555`
+- **SMTP Service** on port `25`
 
-- **Vulnerability Type:** Unauthenticated RCE  
+The attacker uses the admin credentials to create a new user, then sends a crafted email containing a payload. When the server processes this email, it triggers command execution under the context of the James server user.
+
+- **Vulnerability Type:** Authenticated Remote Code Execution  
 - **Affected Version:** Apache James Server 2.3.2  
-- **Authentication Required:** ❌ No  
+- **Authentication Required:** ✅ Yes  
 - **Severity:** Critical  
-- **Exploit-DB ID:** [50347](https://www.exploit-db.com/exploits/50347)  
+- **Exploit-DB ID:** [50347](https://www.exploit-db.com/exploits/50347)
 - **CVE:** _Unknown_ (not assigned)
 
 ---
@@ -105,4 +104,4 @@ nc -nvlp 4444
 
 ## Medium Blog
 I’ve written a more in-depth explanation and walkthrough of this exploit on Medium:
-👉 Read the blog on Medium
+👉 [Read the blog on Medium](https://medium.com/@cyberquestor/apache-james-server-2-3-2-authenticated-remote-code-execution-exploit-db-50347-779a21ca0ec8)
